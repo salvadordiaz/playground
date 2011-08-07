@@ -1,8 +1,13 @@
 package fr.salvadordiaz.gwt.client.search.ui;
 
+import static com.google.common.collect.Iterables.*;
+
+import com.google.common.base.Function;
 import com.google.common.base.Joiner;
 import com.google.common.base.Splitter;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.core.client.Scheduler;
+import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.KeyCodes;
@@ -18,7 +23,6 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.History;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTML;
-import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.InlineLabel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.Widget;
@@ -35,8 +39,8 @@ public class SearchView extends Composite implements SearchDisplay {
 	}
 
 	interface ListTemplates extends SafeHtmlTemplates {
-		@Template("<span class=\"{2}\"></span><a href=\"#repo:owner={0}&name={1}\"><span>{0}</span>&nbsp;/&nbsp;<span class=\"{3}\">{1}</span></a>")
-		SafeHtml repositoryResult(String owner, String reponame, String repoIconStyle, String repoNameStyle);
+		@Template("<div class=\"{2}\"><span class=\"{3}\"></span><a href=\"#repo:owner={0}&name={1}\"><span>{0}</span>&nbsp;/&nbsp;<span class=\"{4}\">{1}</span></a></div>")
+		SafeHtml repositoryResult(String owner, String reponame, String repoIconStyle, String repoStyle, String repoNameStyle);
 	}
 
 	@UiField
@@ -48,12 +52,13 @@ public class SearchView extends Composite implements SearchDisplay {
 	@UiField
 	protected InlineLabel searchButton;
 	@UiField
-	protected HTMLPanel resultsPanel;
+	protected HTML resultsPanel;
 	@UiField
 	protected ListTemplates templates;
 
 	private final Splitter queryTermSplitter = Splitter.on(" ").omitEmptyStrings().trimResults();
 	private final Joiner queryTermJoiner = Joiner.on("+").skipNulls();
+	private final Joiner htmlJoiner = Joiner.on("");
 
 	public SearchView() {
 		initWidget(binder.createAndBindUi(this));
@@ -75,19 +80,31 @@ public class SearchView extends Composite implements SearchDisplay {
 	}
 
 	private void triggerSearch(String input) {
+		resultsPanel.setHTML("");
+		resultsPanel.addStyleName(res.styles().transparent());
 		History.newItem(new StringBuilder("search:").append(queryTermJoiner.join(queryTermSplitter.split(input))).toString());
 		ValueChangeEvent.fire(this, input);
 	}
 
+	private final Function<Repository, String> createResultHtml = new Function<Repository, String>() {
+		@Override
+		public String apply(Repository repository) {
+			return templates.repositoryResult(repository.getOwner(), repository.getName(), res.styles().repo(), res.styles().repoIcon(), res.styles().name()).asString();
+		}
+	};
 	@Override
 	public void setResults(Iterable<Repository> results) {
-		resultsPanel.clear();
-		for (Repository repository : results) {
-			final HTML widget = new HTML(templates.repositoryResult(repository.getOwner(), repository.getName(), res.styles().repoIcon(), res.styles().name()));
-			widget.setStyleName(res.styles().repo());
-			resultsPanel.add(widget);
-		}
-		resultCount.setInnerText("( " + resultsPanel.getWidgetCount() + " result(s) )");
+		resultsPanel.setHTML(htmlJoiner.join(transform(results, createResultHtml)));
+		Scheduler.get().scheduleDeferred(new ScheduledCommand() {
+			@Override
+			public void execute() {
+				revealResults();
+			}
+		});
+	}
+
+	private void revealResults() {
+		resultsPanel.removeStyleName(res.styles().transparent());
 	}
 
 	@Override

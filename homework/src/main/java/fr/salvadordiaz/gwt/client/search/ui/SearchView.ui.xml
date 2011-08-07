@@ -12,6 +12,6 @@
 			<g:TextBox ui:field="searchBox" />
 			<g:InlineLabel ui:field="searchButton" styleName="{res.styles.button}">Search</g:InlineLabel>
 		</div>
-		<g:HTMLPanel styleName="{res.styles.repoList}" ui:field="resultsPanel" />
+		<g:HTML styleName="{res.styles.repoList}" ui:field="resultsPanel" />
 	</g:HTMLPanel>
 </ui:UiBinder>

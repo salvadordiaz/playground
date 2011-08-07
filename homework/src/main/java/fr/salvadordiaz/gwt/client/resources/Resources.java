@@ -20,6 +20,8 @@ public interface Resources extends ClientBundle {
 		String repoList();
 
 		String repo();
+		
+		String transparent();
 
 		String repoIcon();
 

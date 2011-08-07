@@ -106,6 +106,8 @@ pre,code {
 	width: 100%;
 	border-left: 1px solid borderColor;
 	border-right: 1px solid borderColor;
+	opacity:1;
+	-webkit-transition: opacity 1000ms ease-in;
 }
 
 .repo {
@@ -118,9 +120,10 @@ pre,code {
 	height: 30px;
 	position: relative;
 }
-
-.repo:hover {
+.transparent {
+	opacity: 0;
 }
+
 @if user.agent safari {
 	.repo:hover{
 		-webkit-transition: all 200ms ease-out;
