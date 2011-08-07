@@ -9,4 +9,6 @@
 	<inherits name="com.google.gwt.visualization.Visualization"/>
 	<set-property name="gwt.logging.popupHandler" value="DISABLED" />
 	<entry-point class="fr.salvadordiaz.gwt.client.App" />
+	
+	<set-property name="user.agent" value="gecko1_8,safari"/>
 </module>
