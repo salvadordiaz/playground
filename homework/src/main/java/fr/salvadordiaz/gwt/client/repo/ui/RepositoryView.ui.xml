@@ -1,0 +1,22 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder" xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:with type="fr.salvadordiaz.gwt.client.resources.Resources" field="res" />
+	<g:HTMLPanel styleName="{res.styles.container}">
+		<div class="{res.styles.header}">
+			<h2>Collaborators</h2>
+		</div>
+		<g:FlowPanel ui:field="pieContainer" width="100%" height="400px" />
+		<div class="{res.styles.header}">
+			<h2>
+				Repository stats for &nbsp;
+				<span ui:field="repoName" />
+			</h2>
+		</div>
+		<g:FlowPanel ui:field="barsContainer" width="100%" height="300px" />
+		<g:FlowPanel ui:field="timelineContainer" width="100%" height="300px" />
+		<div class="{res.styles.header}">
+			<h2 class="{res.styles.withAction}" ui:field="showCommitsButton">Commits</h2>
+		</div>
+		<g:FlowPanel ui:field="commitsContainer" styleName="{res.styles.hidden}" />
+	</g:HTMLPanel>
+</ui:UiBinder> 

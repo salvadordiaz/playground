@@ -1,0 +1,33 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder" xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:with type="fr.salvadordiaz.gwt.client.resources.Resources" field="res" />
+	<g:HTMLPanel styleName="{res.styles.commit}">
+		<div class="{res.styles.human}">
+			<div class="{res.styles.message}">
+				<pre><a ui:field="messageAnchor" href="#">Redirect to the new repository</a></pre>
+			</div>
+			<div class="{res.styles.actor}">
+				<div class="{res.styles.gravatar}">
+					<img width="30" height="30" ui:field="gravatar" />
+				</div>
+				<div class="{res.styles.name}">
+					<a ui:field="nameAnchor" href="#">guillaumebort</a>
+					<span>(author)</span>
+				</div>
+				<div class="{res.styles.date}">
+					<time ui:field="timeElement">April 13, 2011</time>
+				</div>
+			</div>
+		</div>
+		<div class="{res.styles.machine}">
+			commit&nbsp;&nbsp;
+			<a ui:field="commitIdAnchor" href="#">4bf05a5bc05b8815b262</a>
+			<br />
+			tree&nbsp;&nbsp;&nbsp;&nbsp;
+			<a ui:field="treeIdAnchor" href="#">bc9f9b5f5ecc282d0cf4</a>
+			<br />
+			parent&nbsp;&nbsp;
+			<a ui:field="parentIdAnchor" href="#">9c4baf03abd09a908844</a>
+		</div>
+	</g:HTMLPanel>
+</ui:UiBinder> 

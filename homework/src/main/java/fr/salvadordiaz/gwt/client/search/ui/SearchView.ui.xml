@@ -1,0 +1,17 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder" xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:with type="fr.salvadordiaz.gwt.client.search.ui.SearchView.ListTemplates" field="templates" />
+	<ui:with type="fr.salvadordiaz.gwt.client.resources.Resources" field="res" />
+	<g:HTMLPanel styleName="{res.styles.container}">
+		<div class="{res.styles.header}">
+			<h2>
+				Repository search&nbsp;<span ui:field="resultCount"/>
+			</h2>
+		</div>
+		<div class="{res.styles.searchBar}">
+			<g:TextBox ui:field="searchBox" />
+			<g:InlineLabel ui:field="searchButton" styleName="{res.styles.button}">Search</g:InlineLabel>
+		</div>
+		<g:HTMLPanel styleName="{res.styles.repoList}" ui:field="resultsPanel" />
+	</g:HTMLPanel>
+</ui:UiBinder>

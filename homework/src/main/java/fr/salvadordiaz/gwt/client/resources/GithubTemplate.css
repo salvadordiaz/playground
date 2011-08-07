@@ -1,0 +1,240 @@
+@def borderColor #d9dadb;
+@def linkColor #4183C4;
+a {
+	color: linkColor;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+* {
+	margin: 0;
+	padding: 0;
+}
+img {
+    border: 0 none;
+}
+pre,code {
+	font: 12px 'Bitstream Vera Sans Mono', 'Courier', monospace;
+}
+
+.container {
+	width: 800px;
+	margin-left: auto;
+	margin-right: auto;
+	font-family: Helvetica, sans-serif;
+	font-size: 12px;
+}
+
+.header {
+	border: 1px solid borderColor;
+	height: 44px;
+	width: 100%;
+	margin-top: 10px;
+}
+@if user.agent safari {
+	.header {
+		border-top-left-radius: 3px;
+		border-top-right-radius: 3px;
+		background-image: -webkit-linear-gradient(top, #f6f7f8, #ebeced);
+	}
+} @if user.agent gecko1_8 {
+	.header {
+		-moz-border-radius: 3px 3px 0px 0px;
+		background-image: -moz-linear-gradient(top, #f6f7f8, #ebeced);
+	}
+}
+
+.header h2 {
+	color: #52595D;
+	font-size: 16px;
+	padding: 10px;
+	display: inline-block;
+}
+
+@sprite .withAction {
+	gwt-image: "arrowIcon";
+	background-position: 20% 25%;
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+}
+
+.header .withAction:hover {
+	-webkit-transition: all 200ms ease-in;
+	text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+}
+
+.searchBar {
+	background: none repeat scroll 0 0 #FAFAFB;
+	border: 1px solid #E1E1E2;
+	border-top: 0px;
+	padding: 10px 0px 10px 0px;
+	width: 100%;
+}
+
+.searchBar input[type=text] {
+	border-radius: 3px;
+	border: 1px solid borderColor;
+	width: 80%;
+	margin-left: 10px;
+}
+
+.button {
+	display: inline-block;
+	color: #FFFFFF;
+	font-size: 11px;
+	font-weight: bold;
+	height: 23px;
+	line-height: 23px;
+	padding: 0 10px;
+	text-shadow: -1px -1px 0 #333333;
+}
+@if user.agent safari {
+	.button{
+		border-radius: 3px;
+		background-image: -webkit-linear-gradient(top, #7f7f7f, #0b0b0b);
+	}
+} @elif user.agent gecko1_8 {
+	.button{
+		-moz-border-radius: 3px;
+		background-image: -moz-linear-gradient(top, #7f7f7f, #0b0b0b);
+	}
+}
+
+.repoList {
+	width: 100%;
+	border-left: 1px solid borderColor;
+	border-right: 1px solid borderColor;
+}
+
+.repo {
+	display: block;
+	width: 100%;
+	border-color: borderColor;
+	border-style: none none solid;
+	border-width: medium medium 1px;
+	margin: 0;
+	height: 30px;
+	position: relative;
+}
+
+.repo:hover {
+}
+@if user.agent safari {
+	.repo:hover{
+		-webkit-transition: all 200ms ease-out;
+		box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+		background-image: -webkit-linear-gradient(top, #f6f7f8, #ebeced);
+	}
+} @elif user.agent gecko1_8 {
+	.repo:hover{
+		-moz-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+		background-image: -moz-linear-gradient(top, #f6f7f8, #ebeced);
+	}
+}
+
+@sprite .repoIcon {
+	gwt-image: "publicIcon";
+	display: inline-block;
+	position: absolute;
+	top: 5px;
+	left: 5px;
+}
+
+@sprite .repo a {
+	gwt-image: "arrowIcon";
+	background-position: 90% 50%;
+	display: block;
+	font-size: 14px;
+	padding: 6px 10px 5px 32px;
+	width: 100%;
+}
+
+.repo .name {
+	font-weight: bold;
+}
+
+.hidden {
+	-webkit-transition: height 500ms ease-in-out;
+	height: 0px;
+	overflow: hidden;
+}
+
+.visible {
+	-webkit-transition: height 500ms ease-in;
+	height: 8000px;
+}
+
+.commit {
+	border: 1px solid #BEDCE7;
+	overflow: hidden;
+	width: 100%;
+	padding-bottom: 10px;
+}
+@if user.agent safari {
+	.commit {
+		background-image: -webkit-linear-gradient(top, #eaf2f5, #e3ebf3);
+	}
+} @elif user.agent gecko1_8 {
+	.commit {
+		background-image: -moz-linear-gradient(top, #eaf2f5, #e3ebf3);
+	}
+}
+.commit .human {
+	float: left;
+	padding-top: 0.7em;
+	padding-left: 0.7em;
+	width: 48em;
+}
+
+.commit .machine {
+	border-left: 1px solid #BEDCE7;
+	color: #808080;
+	float: right;
+	font-family: Monaco, "Courier New", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", monospace;
+	font-size: 0.85em;
+	line-height: 1.5em;
+	padding: 0.8em 0 0.8em 1.2em;
+	width: 18em;
+}
+
+.human .message {
+	font-size: 13px;
+}
+
+.human .message pre {
+	font-family: Monaco, "Courier New", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", monospace;
+	white-space: pre-wrap;
+	width: 48em;
+	word-wrap: break-word;
+}
+
+.human .message a,
+.human .actor .name a {
+	color: #000000;
+}
+.human .actor {
+    clear: left;
+    margin-top: 0.75em;
+}
+.human .actor .gravatar {
+    background-color: white;
+    border: 1px solid #D0D0D0;
+    float: left;
+    line-height: 0;
+    margin-right: 0.7em;
+    padding: 2px;
+}
+.human .actor .name {
+    line-height: 1.5em;
+}
+.human .actor .name span {
+    color: #888888;
+    font-size: 90%;
+}
+.human .actor .date {
+    color: #888888;
+    font-size: 90%;
+    line-height: 1em;
+}
