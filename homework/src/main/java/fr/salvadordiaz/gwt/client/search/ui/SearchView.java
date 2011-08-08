@@ -89,12 +89,15 @@ public class SearchView extends Composite implements SearchDisplay {
 	private final Function<Repository, String> createResultHtml = new Function<Repository, String>() {
 		@Override
 		public String apply(Repository repository) {
-			return templates.repositoryResult(repository.getOwner(), repository.getName(), res.styles().repo(), res.styles().repoIcon(), res.styles().name()).asString();
+			return templates.repositoryResult(repository.getOwner(), repository.getName(), res.styles().repo(), res.styles().repoIcon(), res.styles().name())
+					.asString();
 		}
 	};
+
 	@Override
 	public void setResults(Iterable<Repository> results) {
 		resultsPanel.setHTML(htmlJoiner.join(transform(results, createResultHtml)));
+		resultCount.setInnerHTML("( " + resultsPanel.getElement().getChildCount() + " result(s) )");
 		Scheduler.get().scheduleDeferred(new ScheduledCommand() {
 			@Override
 			public void execute() {
