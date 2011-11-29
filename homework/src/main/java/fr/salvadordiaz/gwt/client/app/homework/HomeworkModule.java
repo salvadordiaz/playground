@@ -1,21 +1,21 @@
 package fr.salvadordiaz.gwt.client.app.homework;
 
+import java.util.Map;
+
 import javax.inject.Singleton;
 
+import com.google.common.collect.ImmutableMap;
 import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.inject.client.AbstractGinModule;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceHistoryMapper;
 import com.google.inject.Provides;
 
-import fr.salvadordiaz.gwt.client.activity.ActivityMapping;
 import fr.salvadordiaz.gwt.client.activity.PlaceAwareActivity;
-import fr.salvadordiaz.gwt.client.repo.Repo;
 import fr.salvadordiaz.gwt.client.repo.RepositoryActivity;
 import fr.salvadordiaz.gwt.client.repo.RepositoryDisplay;
 import fr.salvadordiaz.gwt.client.repo.RepositoryPlace;
 import fr.salvadordiaz.gwt.client.repo.ui.RepositoryView;
-import fr.salvadordiaz.gwt.client.search.Search;
 import fr.salvadordiaz.gwt.client.search.SearchActivity;
 import fr.salvadordiaz.gwt.client.search.SearchDisplay;
 import fr.salvadordiaz.gwt.client.search.SearchPlace;
@@ -37,34 +37,11 @@ public class HomeworkModule extends AbstractGinModule {
 	}
 
 	@Provides
-	@Search
-	ActivityMapping firstActivityMapping(final SearchActivity activity) {
-		return new ActivityMapping() {
-			@Override
-			public Class<? extends Place> getPlaceType() {
-				return SearchPlace.class;
-			}
-
-			@Override
-			public PlaceAwareActivity getActivity() {
-				return activity;
-			}
-		};
+	@Singleton
+	Map<Class<? extends Place>, PlaceAwareActivity> provideActivityMappings(SearchActivity searchActivity, RepositoryActivity repositoryActivity) {
+		return ImmutableMap.<Class<? extends Place>, PlaceAwareActivity> of(//
+				SearchPlace.class, searchActivity//
+				, RepositoryPlace.class, repositoryActivity);
 	}
 
-	@Provides
-	@Repo
-	ActivityMapping repoActivityMapping(final RepositoryActivity activity) {
-		return new ActivityMapping() {
-			@Override
-			public Class<? extends Place> getPlaceType() {
-				return RepositoryPlace.class;
-			}
-
-			@Override
-			public PlaceAwareActivity getActivity() {
-				return activity;
-			}
-		};
-	}
 }
