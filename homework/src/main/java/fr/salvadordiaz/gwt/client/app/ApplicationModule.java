@@ -4,8 +4,6 @@ import javax.inject.Singleton;
 
 import com.google.gwt.activity.shared.ActivityManager;
 import com.google.gwt.activity.shared.ActivityMapper;
-import com.google.gwt.event.shared.EventBus;
-import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.inject.client.AbstractGinModule;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceController;
@@ -15,10 +13,8 @@ import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.inject.Provides;
-
-import fr.salvadordiaz.gwt.client.activity.ApplicationActivityMapper;
-import fr.salvadordiaz.gwt.client.activity.ApplicationHistoryMapper;
-import fr.salvadordiaz.gwt.client.activity.DefaultPlace;
+import com.google.web.bindery.event.shared.EventBus;
+import com.google.web.bindery.event.shared.SimpleEventBus;
 
 public class ApplicationModule extends AbstractGinModule {
 
@@ -35,16 +31,11 @@ public class ApplicationModule extends AbstractGinModule {
 		return (IsWidget) display;
 	}
 
-//	@Provides
-//	Place defaultPlace(@DefaultPlace Place place) {
-//		return place;//dangerous
-//	}
-
 	@Provides
 	@Singleton
 	PlaceController providePlaceController(//
 			EventBus eventBus,//
-			@ApplicationActivityMapper ActivityMapper activityMapper,//
+			ActivityMapper activityMapper,//
 			AcceptsOneWidget display) {
 		final ActivityManager activityManager = new ActivityManager(activityMapper, eventBus);
 		activityManager.setDisplay(display);
@@ -57,9 +48,9 @@ public class ApplicationModule extends AbstractGinModule {
 	@Singleton
 	PlaceHistoryHandler provideHistoryHandler(//
 			EventBus eventBus,//
-			@ApplicationHistoryMapper PlaceHistoryMapper mapper,//
-			@DefaultPlace Place place,//
-			@ApplicationActivityMapper ActivityMapper activityMapper,//
+			PlaceHistoryMapper mapper,//
+			Place place,//
+			ActivityMapper activityMapper,//
 			PlaceController placeController) {
 		PlaceHistoryHandler historyHandler = new PlaceHistoryHandler(mapper);
 		historyHandler.register(placeController, eventBus, place);

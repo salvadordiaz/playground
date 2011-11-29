@@ -9,9 +9,6 @@ import com.google.gwt.place.shared.PlaceHistoryMapper;
 import com.google.inject.Provides;
 
 import fr.salvadordiaz.gwt.client.activity.ActivityMapping;
-import fr.salvadordiaz.gwt.client.activity.ApplicationActivityMapper;
-import fr.salvadordiaz.gwt.client.activity.ApplicationHistoryMapper;
-import fr.salvadordiaz.gwt.client.activity.DefaultPlace;
 import fr.salvadordiaz.gwt.client.activity.PlaceAwareActivity;
 import fr.salvadordiaz.gwt.client.repo.Repo;
 import fr.salvadordiaz.gwt.client.repo.RepositoryActivity;
@@ -28,9 +25,9 @@ public class HomeworkModule extends AbstractGinModule {
 
 	@Override
 	protected void configure() {
-		bind(ActivityMapper.class).annotatedWith(ApplicationActivityMapper.class).to(HomeworkActivityMapper.class);
-		bind(Place.class).annotatedWith(DefaultPlace.class).to(SearchPlace.class).in(Singleton.class);
-		bind(PlaceHistoryMapper.class).annotatedWith(ApplicationHistoryMapper.class).to(HomeworkHistoryMapper.class).in(Singleton.class);
+		bind(Place.class).to(SearchPlace.class).in(Singleton.class);//default place, the only place that needs to be injected
+		bind(ActivityMapper.class).to(HomeworkActivityMapper.class).in(Singleton.class);
+		bind(PlaceHistoryMapper.class).to(HomeworkHistoryMapper.class).in(Singleton.class);
 
 		bind(SearchActivity.class).in(Singleton.class);
 		bind(SearchDisplay.class).to(SearchView.class).in(Singleton.class);
