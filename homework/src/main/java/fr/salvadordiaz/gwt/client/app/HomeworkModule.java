@@ -8,11 +8,13 @@ import com.google.common.collect.ImmutableMap;
 import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.activity.shared.ActivityMapper;
 import com.google.gwt.inject.client.AbstractGinModule;
+import com.google.gwt.inject.client.AsyncProvider;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceHistoryMapper;
 import com.google.gwt.place.shared.WithTokenizers;
 import com.google.inject.Provides;
 
+import fr.salvadordiaz.gwt.client.activity.AsyncActivity;
 import fr.salvadordiaz.gwt.client.activity.PlaceAwareActivity;
 import fr.salvadordiaz.gwt.client.repo.RepositoryActivity;
 import fr.salvadordiaz.gwt.client.repo.RepositoryDisplay;
@@ -43,7 +45,9 @@ public class HomeworkModule extends AbstractGinModule {
 
 	@Provides
 	@Singleton
-	Map<Class<? extends Place>, PlaceAwareActivity> provideActivityMappings(SearchActivity searchActivity, RepositoryActivity repositoryActivity) {
+	Map<Class<? extends Place>, PlaceAwareActivity> provideActivityMappings(AsyncProvider<SearchActivity> searchActivityProvider, AsyncProvider<RepositoryActivity> repositoryActivityProvider) {
+		final AsyncActivity<SearchActivity> searchActivity = new AsyncActivity<SearchActivity>(searchActivityProvider);
+		final AsyncActivity<RepositoryActivity> repositoryActivity = new AsyncActivity<RepositoryActivity>(repositoryActivityProvider);
 		return ImmutableMap.<Class<? extends Place>, PlaceAwareActivity> builder()//
 				.put(SearchPlace.class, searchActivity)//
 				.put(RepositoryPlace.class, repositoryActivity)//
