@@ -1,0 +1,14 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder" xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		.red {
+			width: 200px;
+			height: 800px;
+			background-color: red;
+			color: black;
+		}
+	</ui:style>
+	<g:HTMLPanel styleName="{style.red}">
+		<g:Anchor ui:field="label" height="100">This should be mobile search view</g:Anchor>
+	</g:HTMLPanel>
+</ui:UiBinder> 

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE module PUBLIC "-//Google Inc.//DTD Google Web Toolkit 2.4.0//EN" "http://google-web-toolkit.googlecode.com/svn/tags/2.4.0/distro-source/core/src/gwt-module.dtd">
+<module>
+	<!-- Define phone.useragent property to use in deferred binding rules (TODO: add blackberry phone useragent) -->
+	<define-property name="mobile.user.agent" values="android, iphone, not_mobile" />
+	<property-provider name="mobile.user.agent"><![CDATA[
+	  {
+	    var ua = window.navigator.userAgent.toLowerCase();
+	    if (ua.indexOf('android') != -1) { return 'android'; }
+	    if (ua.indexOf('iphone') != -1) { return 'iphone'; }
+	    return 'not_mobile';
+	  }
+	]]></property-provider>
+
+	<define-property name="mobile" values="true, false"/>
+	<set-property name="mobile" value="false"/>
+	<set-property name="mobile" value="true">
+		<when-property-is name="user.agent" value="safari"/>
+		<none>
+			<when-property-is name="mobile.user.agent" value="not_mobile"/>
+		</none>
+	</set-property>
+</module>

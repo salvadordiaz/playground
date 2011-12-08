@@ -11,7 +11,8 @@ import com.google.gwt.visualization.client.VisualizationUtils;
 import com.google.gwt.visualization.client.visualizations.AnnotatedTimeLine;
 import com.google.gwt.visualization.client.visualizations.corechart.CoreChart;
 
-import fr.salvadordiaz.gwt.client.app.ApplicationGinjector;
+import fr.salvadordiaz.gwt.client.app.GinjectorProvider;
+import fr.salvadordiaz.gwt.client.app.GinjectorProvider.ApplicationGinjector;
 
 public class App implements EntryPoint {
 
@@ -33,7 +34,8 @@ public class App implements EntryPoint {
 	}
 
 	private void startApp() {
-		ApplicationGinjector injector = GWT.create(ApplicationGinjector.class);
+		final GinjectorProvider ginjectorProvider = GWT.create(GinjectorProvider.class);
+		final ApplicationGinjector injector = ginjectorProvider.getGinjector();
 		RootPanel.get().add(injector.display());
 		injector.getHistoryHandler().handleCurrentHistory();
 	}
