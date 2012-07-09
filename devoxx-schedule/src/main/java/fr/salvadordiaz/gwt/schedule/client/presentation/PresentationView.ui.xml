@@ -1,0 +1,92 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		h2 {
+			font: bold 18px Helvetica;
+			text-shadow: rgba(0,0,0,.5) 0 1px 1px;
+			color: #000;
+			margin: 10px 20px 5px;
+		}
+		.container{
+			margin-top: 50px;
+		}
+		.rounded {
+			color: #aaa;
+			border: 1px solid #333333;
+			font: 18px;
+			padding: 0;
+			margin: 15px 10px 17px 10px;
+		}
+		.rounded li,
+		.rounded .speakers div {
+			border-top: 1px solid #333;
+			border-bottom: #555858;
+			list-style-type: none;
+			padding: 10px 10px 10px 10px;
+			overflow: hidden;
+			color: white;
+		}
+		@if user.agent safari {
+			.rounded {
+				\-webkit-border-radius: 8px;
+				\-webkit-box-shadow: rgba(0,0,0,.5) 2px 2px 5px;
+			}
+			.rounded li:first-child{
+				\-webkit-border-top-left-radius: 8px;
+				\-webkit-border-top-right-radius: 8px;
+			}
+			.rounded li:last-child,
+			.rounded div:last-child{
+				\-webkit-border-bottom-left-radius: 8px;
+				\-webkit-border-bottom-right-radius: 8px;
+			}
+			.rounded li,
+			.rounded .speakers div{
+				background: literal("-webkit-gradient(linear, 0% 0%, 0% 100%, from(#4c4d4e), to(#404142))");
+			}
+		}
+		
+		@elif user.agent gecko1_8 {
+			.rounded {
+				\-moz-border-radius: 8px;
+				\-moz-box-shadow: rgba(0,0,0,.5) 2px 2px 5px;
+			}
+			.rounded li:first-child{
+				\-moz-border-radius-topleft: 8px;
+				\-moz-border-radius-topright: 8px;
+			}
+			.rounded li:last-child,
+			.rounded div:last-child{
+				\-moz-border-radius-bottomleft: 8px;
+				\-moz-border-radius-bottomright: 8px;
+			}
+			.rounded li,
+			.rounded .speakers div {
+				background: literal("-moz-linear-gradient(100% 100% 90deg, #4c4d4e, #404142)");
+			}
+		}
+		.speakers div{
+			cursor: pointer;
+		}
+	</ui:style>
+	<g:HTMLPanel ui:field="container" styleName="{style.container}">
+		<div>
+			<h2 ui:field="type"></h2>
+			<ul class="{style.rounded}">
+				<li ui:field="title">
+				</li>
+				<g:InlineLabel ui:field="speakersSpan" styleName="{style.speakers}"/>
+				<li ui:field="timeLocation"></li>
+			</ul>
+			<h2>Track / Audience</h2>
+			<ul class="{style.rounded}">
+				<li ui:field="track"></li>
+			</ul>
+			<h2>Summary</h2>
+			<ul class="{style.rounded}">
+				<li ui:field="summary"></li>
+			</ul>
+		</div>
+	</g:HTMLPanel>
+</ui:UiBinder> 

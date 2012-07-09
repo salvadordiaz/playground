@@ -1,0 +1,65 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		body{
+			font-family: sans-serif;
+		}
+		@external gwt-Image;
+		.header{
+			position: fixed;
+			z-index: 1;
+			left: 0;
+			top: 0;
+			right: 0;
+			height: 40px;
+			overflow: hidden;
+		}
+		.header .gwt-Image:first-child {
+			position: absolute;
+			left: 10px;
+			top: 5px;
+			cursor: pointer;
+		}
+		.header .gwt-Image:last-child {
+			position: absolute;
+			right: 10px;
+			top:5px;
+			cursor: pointer;
+		}
+		@if user.agent gecko1_8 {
+			.header {
+			    \-moz-box-shadow: 0 0 10px 0 rgba(0,0,0,.3);
+				background: literal("-moz-linear-gradient(100% 100% 90deg, #4c4d4e, #404142)");
+			}
+		} @elif user.agent safari {
+			.header {
+				\-webkit-box-shadow: 0 0 10px 0 rgba(0,0,0,.3);
+			    background: literal("-webkit-gradient(linear, 0% 0, 0% 100%, from(#4c4d4e), to(#404142))");
+			}
+		}
+		.navigation{
+			margin:10px auto;
+			position: relative;
+			text-align: center;
+			font-size: 20px;
+			color: #fff;
+			text-shadow: #000 0 1px 0;
+			z-index:-1;
+			padding:0px 20px;
+		}
+		.container {
+			margin-top: 40px;
+		}
+	</ui:style>
+	<ui:image field="back" src="back.png"/>
+	<ui:image field="more" src="more.png"/>
+	<g:HTMLPanel>
+		<header class="{style.header}">
+			<g:Image ui:field="backButton" resource="{back}"/>
+			<g:Label ui:field="header" styleName="{style.navigation}"/>
+			<g:Image ui:field="moreButton" resource="{more}"/>
+		</header>
+		<g:SimplePanel ui:field="container" styleName="{style.container}"/>
+	</g:HTMLPanel>
+</ui:UiBinder> 

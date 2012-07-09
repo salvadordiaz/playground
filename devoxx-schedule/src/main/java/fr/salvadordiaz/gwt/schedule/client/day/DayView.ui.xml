@@ -1,0 +1,25 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder" xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style type="fr.salvadordiaz.gwt.schedule.client.day.DayView.Style" src="DayView.css"/>
+	<ui:image field="spinnerImage" src="spinner.gif"/>
+	<g:HTMLPanel ui:field="container">
+		<div class="{style.spinner}" ui:field="spinner" />
+		<div class="{style.navigation}">
+			<g:HTML ui:field="previousButton" styleName="{style.previous}">&lt;</g:HTML>
+			<g:Label ui:field="titleLabel" styleName="{style.title}" />
+			<g:HTML ui:field="nextButton" styleName="{style.next}">&gt;</g:HTML>
+		</div>
+		<table>
+			<tbody>
+				<tr>
+					<td style="width:50px" valign="top">
+						<div id="{style.hoursId}"/>
+					</td>
+					<td style="width:100%" valign="top">
+						<div id="{style.sessionsId}" class="{style.sessions}"/>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</g:HTMLPanel>
+</ui:UiBinder> 
