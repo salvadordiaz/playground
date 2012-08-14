@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Playground documentation]]></title>
+  <link href="http://salvadordiaz.github.com/playground/atom.xml" rel="self"/>
+  <link href="http://salvadordiaz.github.com/playground/"/>
+  <updated>2012-08-14T11:03:13+02:00</updated>
+  <id>http://salvadordiaz.github.com/playground/</id>
+  <author>
+    <name><![CDATA[Salvador Diaz]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Lorem ipsum: attack of the snippet]]></title>
+    <link href="http://salvadordiaz.github.com/playground/blog/2012/08/08/lorem-ipsum-attack-of-the-snippet/"/>
+    <updated>2012-08-08T15:08:00+02:00</updated>
+    <id>http://salvadordiaz.github.com/playground/blog/2012/08/08/lorem-ipsum-attack-of-the-snippet</id>
+    <content type="html"><![CDATA[<p><strong>Lorem ipsum</strong></p>
+
+<p>Lorem ipsum dolor sit amet, consectetuer adipiscing
+elit.Etiam laoreet convallis lectus. Maecenas faucibus
+velit sed sapien. Vestibulum ante ipsum <em>primis</em> in
+faucibus orci luctus et ultrices posuere cubilia Curae;
+Aenean molestie.</p>
+
+<ul>
+<li>Nullam iaculis sodales mi.</li>
+<li>Mauris rutrum eros sed lacus.</li>
+<li>Ut ultrices lectus eget lorem.</li>
+</ul>
+
+
+<p>Duis mauris arcu, commodo pulvinar, facilisis sed,
+tincidunt eleifend, augue. Morbi nunc. Suspendisse
+feugiat velit id elit.</p>
+
+<figure class='code'><figcaption><span>LoremIpsum.java</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Lorem</span> <span class="kd">extends</span> <span class="n">Ipsum</span> <span class="o">{</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">public</span> <span class="kd">final</span> <span class="n">String</span> <span class="n">dolor</span> <span class="o">=</span> <span class="s">&quot;amet&quot;</span><span class="o">;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="kd">public</span> <span class="kt">void</span> <span class="n">String</span> <span class="nf">consectetuer</span><span class="o">(){</span>
+</span><span class='line'>    <span class="k">return</span> <span class="s">&quot;adipiscing&quot;</span><span class="o">;</span>
+</span><span class='line'>  <span class="o">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+</feed>
